@@ -1,7 +1,6 @@
-package io.netty.example.discard;
+package netty;
 
 import io.netty.bootstrap.ServerBootstrap;
-
 import io.netty.channel.ChannelFuture;
 import io.netty.channel.ChannelInitializer;
 import io.netty.channel.ChannelOption;
@@ -53,8 +52,8 @@ public class DiscardServer {
        f.channel().closeFuture().sync();
 	   }
        finally {
-	       workerGroup.shutdownGracefully();
-	       bossGroup.shutdownGracefully();
+	      workerGroup.shutdownGracefully();
+	      bossGroup.shutdownGracefully();
 	   }
     }
     
@@ -63,7 +62,7 @@ public class DiscardServer {
         if (args.length > 0) {
             port = Integer.parseInt(args[0]);
         } else {
-            port = 8080;
+            port = 4590;
         }
         new DiscardServer(port).run();
     }
