@@ -13,19 +13,23 @@ public class DiscardServerHandler extends ChannelHandlerAdapter {
     @Override
     public void channelRead(ChannelHandlerContext ctx, Object msg) { 
     	
-    	// Discard the received data silently.
-        ((ByteBuf) msg).release(); // (3)
+    	//1. Discard the received data silently.
+        //((ByteBuf) msg).release(); // (3)
     	
-        // Print the message on the console.
+        //2. Print the message on the console.
     	/*ByteBuf in = (ByteBuf) msg;
         try {
-            while (in.isReadable()) { // (1)
+            while (in.isReadable()) { 
                 System.out.print((char) in.readByte());
                 System.out.flush();
             }
         } finally {
-            ReferenceCountUtil.release(msg); // (2)
+            ReferenceCountUtil.release(msg); 
         }*/
+
+        //3. echo back to the client.
+        ctx.write(msg); // (1)
+        ctx.flush(); // (2)
     }
 
     @Override
