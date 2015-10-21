@@ -35,7 +35,7 @@ public class Server {
         .childHandler(new ChannelInitializer<SocketChannel>() { 
             @Override
             public void initChannel(SocketChannel ch) throws Exception {
-                ch.pipeline().addLast(new TimeClientHandler());
+                ch.pipeline().addLast(new TimeServerHandler());
             }
         })
         
@@ -62,7 +62,7 @@ public class Server {
         if (args.length > 0) {
             port = Integer.parseInt(args[0]);
         } else {
-            port = 4590;
+            port = 8081;
         }
         new Server(port).run();
     }
