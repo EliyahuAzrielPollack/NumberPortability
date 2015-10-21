@@ -9,7 +9,7 @@ import io.netty.channel.nio.NioEventLoopGroup;
 import io.netty.channel.socket.SocketChannel;
 import io.netty.channel.socket.nio.NioSocketChannel;
 
-public class TimeClient {
+public class Client {
     public static void main(String[] args) throws Exception {
         String host = args[0];
         int port = Integer.parseInt(args[1]);

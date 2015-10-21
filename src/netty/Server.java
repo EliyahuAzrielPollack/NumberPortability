@@ -12,11 +12,11 @@ import io.netty.channel.socket.nio.NioServerSocketChannel;
 /**
  * Discards any incoming data.
  */
-public class DiscardServer {
+public class Server {
 
     private int port;
 
-    public DiscardServer(int port) {
+    public Server(int port) {
         this.port = port;
     }
 
@@ -35,7 +35,7 @@ public class DiscardServer {
         .childHandler(new ChannelInitializer<SocketChannel>() { 
             @Override
             public void initChannel(SocketChannel ch) throws Exception {
-                ch.pipeline().addLast(new TimeServerHandler());
+                ch.pipeline().addLast(new DiscardServerHandler());
             }
         })
         
@@ -64,6 +64,6 @@ public class DiscardServer {
         } else {
             port = 4590;
         }
-        new DiscardServer(port).run();
+        new Server(port).run();
     }
 }
