@@ -35,7 +35,7 @@ public class DiscardServer {
         .childHandler(new ChannelInitializer<SocketChannel>() { 
             @Override
             public void initChannel(SocketChannel ch) throws Exception {
-                ch.pipeline().addLast(new DiscardServerHandler());
+                ch.pipeline().addLast(new TimeServerHandler());
             }
         })
         
