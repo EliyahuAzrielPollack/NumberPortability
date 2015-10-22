@@ -1,6 +1,8 @@
 package netty;
 
 import java.sql.Date;
+import java.util.ArrayList;
+import java.util.List;
 
 import io.netty.buffer.ByteBuf;
 import io.netty.channel.ChannelHandlerAdapter;
@@ -29,8 +31,11 @@ public class TimeClientHandler extends ChannelHandlerAdapter {
 
         //if (buf.readableBytes() >= 4) {
     	    //new TimeDecoder(ctx,)
-            long currentTimeMillis = (buf.readUnsignedInt() - 2208988800L) * 1000L;
-            System.out.println(new Date(currentTimeMillis));
+            
+            List<Object> out = new ArrayList<Object>();
+    	    new TimeDecoder().decode(ctx, (ByteBuf)msg, out);
+    	    long currentTimeMillis = (((ByteBuf) out).readUnsignedInt() - 2208988800L) * 1000L;
+            System.out.println(new Date((long)currentTimeMillis));
             ctx.close();
         //}
     }
