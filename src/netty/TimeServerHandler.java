@@ -20,7 +20,7 @@ public class TimeServerHandler extends ChannelHandlerAdapter {
                 assert f == future;
                 ctx.close();
             }
-        }); // (4)
+        }); 
     }
 
     @Override
