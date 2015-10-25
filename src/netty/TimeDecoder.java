@@ -11,8 +11,10 @@ public class TimeDecoder extends ByteToMessageDecoder {
 	protected void decode(ChannelHandlerContext ctx, ByteBuf in,
 			List<Object> out) {
 		
-		 if (in.readableBytes() < 4) {
-	            return; 
+		 if (in.readableBytes() <= 4) {
+			 for (int i = 0; i < in.capacity(); i ++) { byte b = in.getByte(i);
+			      System.out.print((char) b); }
+	            //return; 
 	     }
 
 	     out.add(in.readBytes(4)); 
